@@ -1,0 +1,61 @@
+/******* START HEADER *******/
+
+@media (min-width: 576px) {
+    h1 {
+        font-size: x-large !important;
+    }
+    header {
+        padding-top: 0px !important;
+    }
+    .logo {
+        height: 6rem !important;
+    }
+}
+
+@media (min-width: 768px) {
+    h1 {
+        font-size: xx-large !important;
+    }
+    .logo {
+        height: 7rem !important;
+    }
+}
+
+header {
+    background-color: #0c1006;
+    color: #fffffd;
+    font-family: montserrat !important;
+    position: sticky !important;
+    padding: 10px 0px 0px 0px;
+}
+
+a {
+    color: #fffffd;
+    transition: transform 0.3s;
+}
+
+ul a:hover {
+    transform: scale(1.2);
+}
+
+.navbar {
+    width: 25rem;
+}
+
+h1 {
+    font-size: large;
+}
+
+.logo {
+    height: 5rem;
+}
+
+.dropdown-menu, .dropdown-item {
+    background-color: #2b6da2 !important;
+    border-radius: 8px 0px 8px 8px;
+    font-size: small;
+    color: #fffffd !important;
+
+}
+
+/******* END HEADER *******/
