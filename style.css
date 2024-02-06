@@ -10,6 +10,9 @@
     .logo {
         height: 6rem !important;
     }
+    .imgCover {
+        height: 70vh !important;
+    }
 }
 
 @media (min-width: 768px) {
@@ -19,12 +22,27 @@
     .logo {
         height: 7rem !important;
     }
+    .imgCover {
+        height: 100vh !important;
+    }
 }
+
+/******* END MEDIA QUERIES *******/
+
+
+
+body {
+    font-family: montserrat !important;
+    margin: 0rem;
+}
+
+
+
+/******* START HEADER *******/
 
 header {
     background-color: #0c1006;
     color: #fffffd;
-    font-family: montserrat !important;
     position: sticky !important;
     padding: 10px 0px 0px 0px;
 }
@@ -59,3 +77,24 @@ h1 {
 }
 
 /******* END HEADER *******/
+
+
+
+/******* START MAIN *******/
+
+main {
+    height: 5000px;
+}
+
+.imgCover { 
+    background-image: url(/img/coverMustang.jpeg);
+    background-size: cover;
+    background-position: bottom;
+    width: 100vw;
+    height: 40vh;
+}
+
+.col {
+    min-width: 15rem !important;
+    max-width: 20rem !important;
+}
