@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +22,6 @@
 
     <!------- START HEADER ------->
 <?php require_once "header.html" ?>
-
     <!------- END HEADER ------->
 
 
@@ -26,6 +29,64 @@
 
     <!------- START MAIN ------->
     <main>
+
+        <!-- espace employés /admin -->
+<?php if (isset($_SESSION['role']) && $_SESSION['role'] == "admin") { ?>
+    <h4>bienvenue <?php echo $_SESSION['firstname']?></h4>
+    <div class="d-flex justify-content-center m-2">
+        <div class="card p-3 d-flex align-items-center">
+            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapse" aria-expanded="false" aria-controls="collapse">
+                Gestion des employés
+            </button>
+
+            <div class="collapse" id="collapse">
+                <div class="m-2 card card-body">
+                    <form action="addEmployee.php" method="POST">
+                        <div>
+                            <label for="last_name">Nom</label>
+                            <input type="last_name" name="last_name" id="last_name" placeholder="nom" required>
+                        </div>
+                        <div>
+                            <label for="first_name">Prénom</label>
+                            <input type="first_name" name="first_name" id="first_name" placeholder="Prénom" required>
+                        </div>
+                        <div>
+                            <label for="role">Rôle</label>
+                            <select name="role" id="role" required>
+                                <option value="employé">employé</option>
+                                <option value="admin">admin</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="address">Adresse</label>
+                            <input type="text" name="address" id="address" placeholder="adresse" required>
+                        </div>
+                        <div>
+                            <label for="birthdate">Date de naissance</label>
+                            <input type="date" name="birthdate" id="birthdate" value=2009-12-31 min="1954-01-01" max="2009-12-31" placeholder="AAAA-MM-JJ" required >
+                        </div>
+                        <div>
+                            <label for="mail">Email</label>
+                            <input type="email" name="mail" id="mail" placeholder="exemple@exemple.com" required>
+                        </div>
+                        <div>
+                            <label for="password">Mot de passe</label>
+                            <input type="text" name="password" id="password" placeholder="mot de passe" required>
+                        </div>
+                        <button class="btn btn-primary w-50" type="submit">Ajouter</button>
+                    </form>
+                </div>
+                <div class="m-2 card card-body">
+                    <input type="checkbox">
+                    <input type="text">
+                </div>
+            </div>
+        </div>
+    </div>
+<?php } elseif (isset($_SESSION['role']) && ($_SESSION['role'] == "admin" || $_SESSION['role'] == "employé")) { ?>
+    <h4>bienvenue <?php echo $_SESSION['firstname']?></h4>
+<?php } ?>
+
         <div class="imgCover"></div>
         <h2 class="p-3 d-flex justify-content-center">Nos services</h2>
         <div class="container">
