@@ -9,7 +9,7 @@ try {
     $pdo = new PDO("mysql:host=$servername;dbname=$database", $usernameDb, $passwordDb);
     // Définir le mode d'erreur PDO sur exception
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    echo "Connexion réussie";
+    echo "Connexion BDD réussie";
 
     // Récupérer les données du formulaire
     $username = trim($_POST['username']);

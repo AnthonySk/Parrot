@@ -38,6 +38,9 @@ try {
         echo "Erreur lors de l'enregistrement de l'utilisateur.";
     }
 
+        // redirection
+        header("Location: index.php");
+
 } catch(PDOException $e) {
     echo "Erreur de connexion : " . $e->getMessage();
 }

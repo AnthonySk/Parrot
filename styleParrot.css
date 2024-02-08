@@ -1,0 +1,122 @@
+/******* START NEDIA QUERIES *******/
+
+@media (min-width: 576px) {
+    h1 {
+        font-size: x-large !important;
+    }
+    header {
+        padding-top: 0px !important;
+    }
+    .logo {
+        height: 6rem !important;
+    }
+    .imgCover {
+        height: 70vh !important;
+    }
+}
+
+@media (min-width: 768px) {
+    h1 {
+        font-size: xx-large !important;
+    }
+    .logo {
+        height: 7rem !important;
+    }
+    .imgCover {
+        height: 100vh !important;
+    }
+}
+
+/******* END MEDIA QUERIES *******/
+
+
+
+* {
+    font-family: montserrat !important;
+    margin: 0rem !important;
+    padding: 0rem !important;
+}
+
+.btn {
+    color:#fffffd;
+    background-color: #2b6da2;
+    border-radius: 8px 0px 8px 0px;
+    padding: 5px !important;
+}
+
+.btn:hover {
+    background-color: #2b6da2;
+    box-shadow: 0px 3px 10px 3px rgba(0,0,0,0.5);
+}
+
+
+
+/******* START HEADER *******/
+
+header {
+    background-color: #0c1006;
+    color: #fffffd;
+    position: sticky !important;
+    padding: 10px 0px 0px 0px;
+}
+
+header a {
+    color: #fffffd;
+    transition: transform 0.3s;
+}
+
+header ul a:hover {
+    transform: scale(1.2);
+}
+
+.navbar {
+    width: 25rem; 
+}
+
+h1 {
+    font-size: large;
+}
+
+.logo {
+    height: 5rem;
+}
+
+.dropdown-menu, .dropdown-item {
+    background-color: #2b6da2 !important;
+    border-radius: 8px 0px 8px 8px;
+    font-size: small;
+    color: #fffffd !important;
+
+}
+
+/******* END HEADER *******/
+
+
+
+/******* START MAIN *******/
+
+.imgCover { 
+    background-image: url(/img/coverMustang.jpeg);
+    background-size: cover;
+    background-position: bottom;
+    width: 100vw;
+    height: 40vh;
+}
+
+.repairService {
+    min-width: 15rem !important;
+    max-width: 16rem !important;
+    border-radius: 8px !important;
+}
+
+.card {
+    border-radius: 8px !important;
+}
+
+
+.badge {
+    font-size: medium;
+    background-color:#2b6da2;
+    border-radius: 8px 0px 8px 0px;
+}
+
