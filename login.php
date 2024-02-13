@@ -23,7 +23,7 @@
     <!------- START MAIN ------->
 
     <main class="d-flex justify-content-center m-5">
-        <div class="card p-3 d-flex align-items-center loginCard">
+        <div class="card  d-flex align-items-center p-3 colorForm">
             <h5>Login</h5>
             <form class="w-100" action="authentication.php" method="POST">
                 <label for="username">Email</label>
@@ -35,7 +35,7 @@
                     <input class="w-100" placeholder="mot de passe" type="password" name="password" id="password" required>
                 </div>
                 <div class="d-flex flex-column d-flex align-items-center">
-                    <a href="#">Récupérer mon mot de passe...</a>
+                    <a class="fs-6" href="#">Récupérer mon mot de passe...</a>
                     <button class="btn" type="submit">Connexion</button>
                 </div>
             </form>

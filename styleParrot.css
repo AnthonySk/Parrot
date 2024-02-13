@@ -1,5 +1,10 @@
 /******* START NEDIA QUERIES *******/
 
+@media (max-width: 576px) {
+    .imgCover, .showRating {
+        height: 40vh !important;
+    }
+}
 @media (min-width: 576px) {
     h1 {
         font-size: x-large !important;
@@ -10,7 +15,7 @@
     .logo {
         height: 6rem !important;
     }
-    .imgCover {
+    .imgCover, .showRating {
         height: 70vh !important;
     }
 }
@@ -22,7 +27,7 @@
     .logo {
         height: 7rem !important;
     }
-    .imgCover {
+    .imgCover, .showRating {
         height: 100vh !important;
     }
 }
@@ -86,7 +91,6 @@ h1 {
     border-radius: 8px 0px 8px 8px;
     font-size: small;
     color: #fffffd !important;
-
 }
 
 /******* END HEADER *******/
@@ -99,18 +103,20 @@ h1 {
     background-image: url(/img/coverMustang.jpeg);
     background-size: cover;
     background-position: bottom;
-    width: 100vw;
-    height: 40vh;
 }
 
-.repairService {
-    min-width: 15rem !important;
-    max-width: 16rem !important;
+.handler {
+    min-width: 75vw !important;
+}
+
+.repairServiceAd, .usedCarAd, .card-img-top {
+    min-width: 20rem !important;
+    max-width: 28rem !important;
     border-radius: 8px !important;
 }
 
 .card {
-    border-radius: 8px !important;
+    border-radius: 9px !important;
 }
 
 
@@ -120,3 +126,18 @@ h1 {
     border-radius: 8px 0px 8px 0px;
 }
 
+.employeesArea, .repairServicesArea, .schedulesArea, .vehiclesArea, .ratingsArea {
+    background-color: #2b6da2;
+}
+
+.adminArea, .showRating, .colorForm {
+    background-color: #dbb45d;
+}
+
+.bi {
+    color: #dbb45d;
+}
+
+.blueStar {
+    color: #2b6da2;
+}

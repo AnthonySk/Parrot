@@ -16,12 +16,11 @@ try {
     $repairServices = $query->fetchAll(PDO::FETCH_ASSOC);
 
     // afficher repairService
-    echo $repairService['picture'];
     foreach ($repairServices as $repairService) {
-        echo '<div class="col m-2">';
-            echo '<div class="card repairService">';
-                echo '<img class ="card-img-top img-fluid z-0" src="' . $repairService['picture'] . '" alt="image' . $repairService['name'] . '">';
-                echo '<div class="badge z-1 position-absolute p-2">' . $repairService['price'] . '</div>';
+        echo '<div class="col d-flex justify-content-center m-2 ">';
+            echo '<div class="card repairServiceAd">';
+                echo '<img class="card-img-top img-fluid z-0" src="' . $repairService['picture'] . '" alt="image' . $repairService['name'] . '">';
+                echo '<div class="badge z-1 position-absolute p-2">' . $repairService['price'] . ' €</div>';
                 echo '<div class="card-body p-1">';
                     echo '<h3 class="card-title">' . $repairService['name'] . '</h3>';
                     echo '<p class="card-text">' . $repairService['description'] . '</p>';

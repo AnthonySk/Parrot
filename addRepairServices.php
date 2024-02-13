@@ -22,6 +22,7 @@ try {
     $img = $_FILES['repairService_img'];
 
     echo 'debut du trasnfert img:<br>';
+    
     // transfert de l'image
     $dir_target = "ImgRepairServices/";
     $extension = pathinfo($img['name'], PATHINFO_EXTENSION);
@@ -35,10 +36,18 @@ try {
         echo 'problème de transfert <br>';
         $img['error'];
     }
-    echo 'lancement de la requete save date in bdd';
+
+
     // requête
     $query = $pdo->prepare("INSERT INTO repairServices (repair_service_id, name, price, picture, description) VALUES (?, ?, ?, ?, ?)");
     $query->execute([$repair_service_id, $name, $price, $img_path, $describe]); // img
+
+
+    if ($query->rowCount() > 0) {
+        echo "Véhicules enregistré avec succès.";
+    } else {
+        echo "Erreur lors de l'enregistrement du véhicules.";
+    }
 
     // redirection
     header("Location: index.php");
