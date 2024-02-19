@@ -1,20 +1,18 @@
 <?php
 session_start();
-$servername = "127.0.0.1";
-$usernameDb = "root";
-$passwordDb = "Ragnarok";
-$database = "Parrot";
+require_once "config.php";
 
 try {
     $pdo = new PDO("mysql:host=$servername;dbname=$database", $usernameDb, $passwordDb);
-    // Définir le mode d'erreur PDO sur exception
+    // ERROR PDO ON EXCEPTION
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
-    // Récupér les users en BDD
+    // QUERY
     $query = $pdo->prepare("SELECT rating_id, name, rate, message, is_validate FROM ratings WHERE is_validate IS NULL");
     $query->execute();
     $ratings = $query->fetchAll(PDO::FETCH_ASSOC);
-    // afficher repairService
+
+    // SHOW LSIT
     foreach ($ratings as $rating) {
         echo '<div class="card">';
             echo '<div class="card-body">';

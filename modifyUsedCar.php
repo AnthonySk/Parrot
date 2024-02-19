@@ -1,36 +1,37 @@
 <?php
 session_start();
-$servername = "127.0.0.1";
-$usernameDb = "root";
-$passwordDb = "Ragnarok";
-$database = "Parrot";
+require_once "config.php";
 
 try {
     $pdo = new PDO("mysql:host=$servername;dbname=$database", $usernameDb, $passwordDb);
-    // Définir le mode d'erreur PDO sur exception
+    // ERROR PDO ON EXCEPTION
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // Récupération des données
-    $usedCars_id = $_POST['used_car_ad_id'];
-    $usedCar_column = $_POST['used_car_column'];
-        
-        // data to modify
-    $new_value_brand = $_POST['new_value_brand'];
-    $new_value_model = $_POST['new_value_model'];
-    $new_value_color = $_POST['new_value_color'];
-    $new_value_description = $_POST['new_value_description'];
+    // DATA FOR MOD USED CARS
+    $usedCars_id = htmlspecialchars($_POST['used_car_ad_id'], ENT_QUOTES, 'UTF-8');
+    $usedCar_column = htmlspecialchars($_POST['used_car_column'], ENT_QUOTES, 'UTF-8');
 
-    $new_value_motorisation = $_POST['new_value_motorisation'];
-    $new_value_gearbox = $_POST['new_value_gearbox'];
+    // GET DATA OF THIS ID
+    $query = $pdo->prepare("SELECT * FROM UsedCarsAd WHERE used_car_ad_id = ?");
+    $query->execute([$usedCars_id]);
+    $thisCar = $query->fetch(PDO::FETCH_ASSOC);
 
-    $new_value_kilometers = $_POST['new_value_kilometers'];
-    $new_value_price = $_POST['new_value_price'];
-    $new_value_year = $_POST['new_value_year'];
+    $new_value_brand = htmlspecialchars($_POST['new_value_brand'], ENT_QUOTES, 'UTF-8');
+    $new_value_model = htmlspecialchars($_POST['new_value_model'], ENT_QUOTES, 'UTF-8');
+    $new_value_color = htmlspecialchars($_POST['new_value_color'], ENT_QUOTES, 'UTF-8');
+    $new_value_description = htmlspecialchars($_POST['new_value_description'], ENT_QUOTES, 'UTF-8');
+
+    $new_value_motorisation = htmlspecialchars($_POST['new_value_motorisation'], ENT_QUOTES, 'UTF-8');
+    $new_value_gearbox = htmlspecialchars($_POST['new_value_gearbox'], ENT_QUOTES, 'UTF-8');
+
+    $new_value_kilometers = htmlspecialchars($_POST['new_value_kilometers'], ENT_QUOTES, 'UTF-8');
+    $new_value_price = htmlspecialchars($_POST['new_value_price'], ENT_QUOTES, 'UTF-8');
+    $new_value_year = htmlspecialchars($_POST['new_value_year'], ENT_QUOTES, 'UTF-8');
 
     $new_value_file = $_FILES['new_value_file'];
 
 
-    // Affecter la valeur modifié a $new_value_to_use
+    // NEW VALUE
     switch ($usedCar_column) {
         case 'brand':
             $new_value_to_modify = $new_value_brand;
@@ -44,14 +45,12 @@ try {
         case 'description':
             $new_value_to_modify = $new_value_description;
             break;
-
         case 'motorisation':
             $new_value_to_modify = $new_value_motorisation;
             break;
         case 'gearbox':
             $new_value_to_modify = $new_value_gearbox;
             break;
-
         case 'kilometers':
             $new_value_to_modify = $new_value_kilometers;
             break;
@@ -63,21 +62,42 @@ try {
             break;
         case 'picture':
             if ($new_value_file !== null) {
+                // DATA FOR NEW IMG
                 $dir_target = "ImgVehicles/";
                 $extension = pathinfo($new_value_file['name'], PATHINFO_EXTENSION);
-                $new_value_file_path = $dir_target . $model . '.' . $extension; // regler le probleme de nom du fichier -> $model ???
-                $new_value_to_modify = $new_value_file_path;
+                $mimeTypeAuthorised = ['image/jpeg', 'image/jpg', 'image/webp'];
+                $mimeTypeImg = mime_content_type($new_value_file['tmp_name']);
+                $sizeFileMax = 2 * 1024 * 1024;
+                $sizeFile = $new_value_file['size'];
+                
+                // VALIDATION IMG
+                if ($sizeFile < $sizeFileMax) {
+                    if (in_array($mimeTypeImg, $mimeTypeAuthorised)) {
+                        $new_value_file_path = $dir_target . $thisCar['model'] . '.' . $extension;
+                        $new_value_to_modify = $new_value_file_path;
+                // TRANSFER IMG
+                        if (move_uploaded_file($new_value_file['tmp_name'], $new_value_file_path)) {
+                            echo 'image transféré vers ' . $dir_target . 'à' . $new_value_file_path . '<br>';
+                            unlink($thisCar['picture']);
+                        } else {
+                            exit('problème de transfert :' . $new_value_file['error']);
+                        }
+                    } else {
+                        exit('type MIME du fichier non autorisé');
+                    }
+                } else {
+                    exit('Taille maximale de fichier dépassée');
+                }
             }
         break;
         default:
-            echo 'champ de modification non reconnu';
+            exit('champ de modification non reconnu');
     }
-    var_dump($usedCar_column, $new_value_to_modify, $usedCars_id);
 
 
-    // Requête de modification
-    $query = $pdo->prepare("UPDATE UsedCarsAd SET $usedCar_column = '$new_value_to_modify'  WHERE used_car_ad_id = ?");
-    $query->execute([$usedCars_id]);
+    // QUERY
+    $query = $pdo->prepare("UPDATE UsedCarsAd SET $usedCar_column = ?  WHERE used_car_ad_id = ?");
+    $query->execute([$new_value_to_modify, $usedCars_id]);
 
     header("Location: index.php");
 

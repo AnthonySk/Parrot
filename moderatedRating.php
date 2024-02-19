@@ -1,11 +1,7 @@
 <?php
+require_once "config.php";
 require_once 'vendor/autoload.php';
 use Ramsey\Uuid\Uuid;
-
-$servername = "127.0.0.1";
-$usernameDb = "root";
-$passwordDb = "Ragnarok";
-$database = "Parrot";
 
 try {
     $pdo = new PDO("mysql:host=$servername;dbname=$database", $usernameDb, $passwordDb);

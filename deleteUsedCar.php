@@ -1,18 +1,25 @@
 <?php
 session_start();
-$servername = "127.0.0.1";
-$usernameDb = "root";
-$passwordDb = "Ragnarok";
-$database = "Parrot";
+require_once "config.php";
 
 try {
     $pdo = new PDO("mysql:host=$servername;dbname=$database", $usernameDb, $passwordDb);
-    // Définir le mode d'erreur PDO sur exception
+    // ERROR PDO ON EXCEPTION
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
-    $usedCar_id = $_POST['used_car_ad_id'];
+    // ID TO DELETE
+    $usedCar_id = htmlspecialchars($_POST['used_car_ad_id'], ENT_QUOTES, 'UTF-8');
 
-    // Requête
+    // DELETE IMG OF DIR
+    $query = $pdo->prepare("SELECT picture FROM usedCarsAd WHERE used_car_ad_id = ?");
+    $query->execute([$usedCar_id]);
+    $image = $query->fetch();
+
+    if ($image && file_exists($image['picture'])) {
+        unlink($image['picture']);
+    }
+
+    // QUERY
     $query = $pdo->prepare("DELETE FROM UsedCarsAd WHERE used_car_ad_id = ?");
     $query->execute([$usedCar_id]);
 

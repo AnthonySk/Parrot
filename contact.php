@@ -24,36 +24,30 @@
     <!------- START MAIN ------->
 
     <main class="d-flex justify-content-center m-5">
-        <div class="card d-flex align-items-center p-3 colorForm">
-            <h5 class="m-3">Mon témoigage</h5>
-            <form class="w-100 " action="addRating.php" method="POST">
+        <div class="card z-n1 d-flex align-items-center p-3 colorForm">
+            <h5 class="m-3">Nous contacter</h5>
+            <form class="" action="sendMail.php" method="POST">
                 <div class="row">
-                    <div class="col w-100">
-                        <input class="m-1" placeholder="nom" type="text" name="rating_name" id="rating_name" required>
-                    </div>
-                    <div class="row w-100">
-                        <div class="rating m-1">
-                            <!-- 1 -->
-                            <input class="d-none" type="radio" name="rating_rate" id="star1" value="1">
-                            <label class="blueStar bi bi-star" for="star1"></label>
-                            <!-- 2 -->
-                            <input class="d-none" type="radio" name="rating_rate" id="star2" value="2">
-                            <label class="blueStar bi bi-star" for="star2"></label>
-                            <!-- 3 -->
-                            <input class="d-none" type="radio" name="rating_rate" id="star3" value="3">
-                            <label class="blueStar bi bi-star" for="star3"></label>
-                            <!-- 4 -->
-                            <input class="d-none" type="radio" name="rating_rate" id="star4" value="4">
-                            <label class="blueStar bi bi-star" for="star4"></label>
-                            <!-- 5 -->
-                            <input class="d-none" type="radio" name="rating_rate" id="star5" value="5">
-                            <label class="blueStar bi bi-star" for="star5"></label>
-                        </div>
+                    <div class="col">
+                        <input class="rounded d-inline-flex m-1 p-1" minlength="3" placeholder="prénom" type="text" name="contact_first_name" id="contact_first_name" required>
+                        <input class="rounded d-inline-flex m-1 p-1" minlength="2" placeholder="nom" type="text" name="contact_last_name" id="contact_last_name" required>
                     </div>
                 </div>
-                <div class="row w-100">
-                    <label class="d-inline-flex m-1" for="rating_message">Témoignage :</label>
-                    <textarea class="rounded d-inline-flex p-1 m-1" maxlength="150" name="rating_message" id="rating_message" placeholder="..." required></textarea>
+                <div class="row">
+                    <div class="col">
+                        <input class="rounded d-inline-flex m-1 p-1" placeholder="email" type="email" name="contact_mail" id="contact_mail" required>
+                        <input class="rounded d-inline-flex m-1 p-1" placeholder="xx-xx-xx-xx-xx" type="tel" pattern="[0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{2}" name="contact_phone_number" id="contact_phone_number" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col d-flex">
+                        <input class="rounded w-100 m-1 p-1" minlength="5" placeholder="objet du message" type="text" name="contact_subject" id="contact_subject" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="d-flex">
+                        <textarea class="rounded w-100 p-1 m-1" maxlength="150" name="contact_message" id="contact_message" placeholder="Votre message" required></textarea>
+                    </div>
                 </div>
                 <div class="d-flex flex-column d-flex align-items-center m-1">
                     <button class="btn" type="submit">Valider</button>
@@ -67,9 +61,9 @@
 
 
     <!------- START FOOTER ------->
-
+    <?php require_once "footer.php"?>
     <!------- END FOOTER ------->
-    <script src="scriptRating.js"></script>
+    <script src="scriptParrot.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
 

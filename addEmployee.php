@@ -1,45 +1,31 @@
 <?php
+require_once "config.php";
 require_once 'vendor/autoload.php';
 use Ramsey\Uuid\Uuid;
 
-$servername = "127.0.0.1";
-$usernameDb = "root";
-$passwordDb = "Ragnarok";
-$database = "Parrot";
-
 try {
     $pdo = new PDO("mysql:host=$servername;dbname=$database", $usernameDb, $passwordDb);
-    // Définir le mode d'erreur PDO sur exception
+    // ERROR PDO ON EXCEPTION
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     echo 'connexion avec la BDD établie <br>';
 
-    // Inscription new users
+    // DATA FOR NEW EMPLOYEES
     $user_id = Uuid::uuid4()->toString();
-    $firstname = trim($_POST['first_name']);
-    $lastname = trim($_POST['last_name']);
-    $role = trim($_POST['role']);
-    $address = trim($_POST['address']);
-    $birthdate = trim($_POST['birthdate']);
-    $mail = trim($_POST['mail']);
-    $password = trim($_POST['password']);
-    echo "prise en charge des données";
+    $firstname = htmlspecialchars($_POST['first_name'], ENT_QUOTES, 'UTF-8');
+    $lastname = htmlspecialchars($_POST['last_name'], ENT_QUOTES, 'UTF-8');
+    $role = htmlspecialchars($_POST['role'], ENT_QUOTES, 'UTF-8');
+    $address = htmlspecialchars($_POST['address'], ENT_QUOTES, 'UTF-8');
+    $birthdate = htmlspecialchars($_POST['birthdate'], ENT_QUOTES, 'UTF-8');
+    $mail = htmlspecialchars($_POST['mail'], ENT_QUOTES, 'UTF-8');
+    $password = htmlspecialchars($_POST['password'], ENT_QUOTES, 'UTF-8');
+
     $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
-    echo "password hashé";
     
-    // requête
+    // QUERY
     $query = $pdo->prepare("INSERT INTO Users (user_id, mail, password, first_name, last_name, address, birthdate, role) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
     $query->execute([$user_id, $mail, $hashedPassword, $firstname, $lastname, $address, $birthdate, $role]);
 
-    if ($query->rowCount() > 0) {
-        // L'insertion a réussi
-        echo "Utilisateur enregistré avec succès.";
-    } else {
-        // L'insertion a échoué
-        echo "Erreur lors de l'enregistrement de l'utilisateur.";
-    }
-
-        // redirection
-        header("Location: index.php");
+    header("Location: index.php");
 
 } catch(PDOException $e) {
     echo "Erreur de connexion : " . $e->getMessage();

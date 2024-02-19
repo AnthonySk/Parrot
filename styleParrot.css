@@ -18,6 +18,12 @@
     .imgCover, .showRating {
         height: 70vh !important;
     }
+    .fs {
+        font-size: 0.8rem !important;
+    }
+    footer h6 {
+        font-size: 1.2rem !important;
+    }
 }
 
 @media (min-width: 768px) {
@@ -29,6 +35,21 @@
     }
     .imgCover, .showRating {
         height: 100vh !important;
+    }
+    .fs {
+        font-size: 1rem !important;
+    }
+    footer h6 {
+        font-size: 1.3rem !important;
+    }
+}
+
+@media (min-width: 992px) {
+    .fs {
+        font-size: 1.2rem !important;
+    }
+    footer h6 {
+        font-size: 1.5rem !important;
     }
 }
 
@@ -126,11 +147,11 @@ h1 {
     border-radius: 8px 0px 8px 0px;
 }
 
-.employeesArea, .repairServicesArea, .schedulesArea, .vehiclesArea, .ratingsArea {
+.handlerEmployeesArea, .repairServicesArea, .schedulesArea, .vehiclesArea, .ratingsArea {
     background-color: #2b6da2;
 }
 
-.adminArea, .showRating, .colorForm {
+.adminArea, .showRating, .colorForm, .employeeArea {
     background-color: #dbb45d;
 }
 
@@ -138,6 +159,48 @@ h1 {
     color: #dbb45d;
 }
 
-.blueStar {
+.blueStar, .bi-x-circle {
     color: #2b6da2;
+}
+
+footer .logo {
+    height: 4rem;
+}
+
+
+
+.logoSocialMedia {
+    height: 2rem;
+}
+
+.fs {
+    font-size: 1rem;
+}
+
+footer h6 {
+    font-size: 1rem;
+}
+
+footer {
+    background-color: #70a0c7;
+}
+
+
+.noUi-target {  /* slider bar */
+    background-color: #70a0c7; 
+}
+
+.noUi-connect { /* connect between cursors */
+    background-color:#dbb45d;
+}
+
+.noUi-handle { /* cursors */
+    background-color: #34568B;
+    box-shadow:none;
+    border-radius: 25%;
+    cursor: pointer;
+}
+
+.informations {
+    font-size: 0.7rem;
 }

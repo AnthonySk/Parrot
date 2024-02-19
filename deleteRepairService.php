@@ -1,22 +1,30 @@
 <?php
 session_start();
-$servername = "127.0.0.1";
-$usernameDb = "root";
-$passwordDb = "Ragnarok";
-$database = "Parrot";
+require_once "config.php";
 
 try {
     $pdo = new PDO("mysql:host=$servername;dbname=$database", $usernameDb, $passwordDb);
-    // Définir le mode d'erreur PDO sur exception
+    // ERROR PDO ON EXCEPTION
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    echo "connexion bdd ok <br>";
-    $repair_service_id = $_POST['repair_service_id'];
-    echo "preparation ok";
-    // Requête
+
+    // ID TO DELETE
+    $repair_service_id = htmlspecialchars($_POST['repair_service_id'], ENT_QUOTES, 'UTF-8');
+
+    // DELETE IMG OF DIR
+    $query = $pdo->prepare("SELECT picture FROM RepairServices WHERE repair_service_id = ?");
+    $query->execute([$repair_service_id]);
+    $image = $query->fetch();
+
+    if ($image && file_exists($image['picture'])) {
+        unlink($image['picture']);
+    }
+
+    // QUERY
     $query = $pdo->prepare("DELETE FROM RepairServices WHERE repair_service_id = ?");
     $query->execute([$repair_service_id]);
-    echo 'requête réussie';
+
     header("Location: index.php");
+
 } catch(PDOException $e) {
     echo "Erreur de connexion : " . $e->getMessage();
 }

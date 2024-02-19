@@ -1,54 +1,64 @@
 <?php
+require_once "config.php";
 require_once 'vendor/autoload.php';
 use Ramsey\Uuid\Uuid;
 
-$servername = "127.0.0.1";
-$usernameDb = "root";
-$passwordDb = "Ragnarok";
-$database = "Parrot";
-
 try {
     $pdo = new PDO("mysql:host=$servername;dbname=$database", $usernameDb, $passwordDb);
-    // Définir le mode d'erreur PDO sur exception
+    // ERROR PDO ON EXCEPTION
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     echo 'connexion avec la BDD établie <br>';
 
-    // Inscription new users
+    // DATA FOR NEW USED CAR
     $usedCarAd_id = Uuid::uuid4()->toString();
-    $brand = trim($_POST['usedCar_brand']);
-    $price = trim($_POST['usedCar_price']);
-    $year = trim($_POST['usedCar_year']);
-    $gearbox = trim($_POST['usedCar_gearbox']);
-    $motorisation = trim($_POST['usedCar_motorisation']);
-    $description = trim($_POST['usedCar_description']);
-    $color = trim($_POST['usedCar_color']);
-    $model = trim($_POST['usedCar_model']);
-    $kilometers = trim($_POST['usedCar_kilometers']);
+    $brand = htmlspecialchars($_POST['usedCar_brand'], ENT_QUOTES, 'UTF-8');
+    $price = htmlspecialchars($_POST['usedCar_price'], ENT_QUOTES, 'UTF-8');
+    $year = htmlspecialchars($_POST['usedCar_year'], ENT_QUOTES, 'UTF-8');
+    $gearbox = htmlspecialchars($_POST['usedCar_gearbox'], ENT_QUOTES, 'UTF-8');
+    $motorisation = htmlspecialchars($_POST['usedCar_motorisation'], ENT_QUOTES, 'UTF-8');
+    $description = htmlspecialchars($_POST['usedCar_description'], ENT_QUOTES, 'UTF-8');
+    $color = htmlspecialchars($_POST['usedCar_color'], ENT_QUOTES, 'UTF-8');
+    $model = htmlspecialchars($_POST['usedCar_model'], ENT_QUOTES, 'UTF-8');
+    $kilometers = htmlspecialchars($_POST['usedCar_kilometers'], ENT_QUOTES, 'UTF-8');
     $img = $_FILES['usedCar_img'];
     
-    // transfert de l'image
+    // IMG DATA FOR TRANSFER
     $dir_target = "ImgVehicles/";
     $extension = pathinfo($img['name'], PATHINFO_EXTENSION);
-    $img_path = $dir_target . $model . '.' . $extension;
+    $mimeTypeAuthorised = ['image/jpeg', 'image/jpg', 'image/webp'];
+    $mimeTypeImg = mime_content_type($img['tmp_name']);
+    $sizeFileMax = 2 * 1024 * 1024;
+    $sizeFile = $img['size'];
 
-    if (move_uploaded_file($img['tmp_name'], "$img_path")) {
-        echo 'image transféré vers ' . $dir_target . 'à' . $img_path . '<br>';
+    // VALIDATION
+        // VALIDATION PRICE
+        if (filter_var($price, FILTER_VALIDATE_FLOAT)) {
+            $price = floatval($price);
+        } else {
+            exit('Prix invalide');
+        }
+
+        // VALIDATION IMG
+    if ($sizeFile < $sizeFileMax) {
+        if (in_array($mimeTypeImg, $mimeTypeAuthorised)) {
+            $img_path = $dir_target . $model . '.' . $extension;
+            if (move_uploaded_file($img['tmp_name'], $img_path)) {
+                echo 'image transféré vers ' . $dir_target . 'à' . $img_path . '<br>';
+            } else {
+                exit('problème de transfert :' . $img['error']);
+            }
+        } else {
+            exit('type MIME du fichier non autorisé');
+        }
     } else {
-        echo 'problème de transfert <br>' . $img['error'];
+        exit('Taille maximale de fichier dépassée');
     }
 
-    // requête
+    // QUERY
     $query = $pdo->prepare("INSERT INTO UsedCarsAd (used_car_ad_id, brand, price, year, gearbox, motorisation, description, color, model, kilometers, picture) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
     $query->execute([$usedCarAd_id, $brand, $price, $year, $gearbox, $motorisation, $description, $color, $model, $kilometers, $img_path]);
 
-    if ($query->rowCount() > 0) {
-        echo "Véhicules enregistré avec succès.";
-    } else {
-        echo "Erreur lors de l'enregistrement du véhicules.";
-    }
-
-        // redirection
-        header("Location: index.php");
+    header("Location: index.php");
 
 } catch(PDOException $e) {
     echo "Erreur de connexion : " . $e->getMessage();

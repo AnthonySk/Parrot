@@ -1,22 +1,21 @@
 <?php
 session_start();
-$servername = "127.0.0.1";
-$usernameDb = "root";
-$passwordDb = "Ragnarok";
-$database = "Parrot";
+require_once "config.php";
 
 try {
     $pdo = new PDO("mysql:host=$servername;dbname=$database", $usernameDb, $passwordDb);
-    // Définir le mode d'erreur PDO sur exception
+    // ERROR PDO ON EXCEPTION
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    echo "connexion bdd ok <br>";
-    $user_id = $_POST['user_id'];
-    echo "preparation ok";
-    // Requête
+
+    // ID TO DELETE
+    $user_id = htmlspecialchars($_POST['user_id'], ENT_QUOTES, 'UTF-8');
+
+    // QUERY
     $query = $pdo->prepare("DELETE FROM Users WHERE user_id = ?");
     $query->execute([$user_id]);
-    echo 'requête réussie';
+
     header("Location: index.php");
+
 } catch(PDOException $e) {
     echo "Erreur de connexion : " . $e->getMessage();
 }

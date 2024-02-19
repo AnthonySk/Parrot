@@ -1,35 +1,24 @@
 <?php
+require_once "config.php";
 require_once 'vendor/autoload.php';
 use Ramsey\Uuid\Uuid;
 
-$servername = "127.0.0.1";
-$usernameDb = "root";
-$passwordDb = "Ragnarok";
-$database = "Parrot";
-
 try {
     $pdo = new PDO("mysql:host=$servername;dbname=$database", $usernameDb, $passwordDb);
-    // Définir le mode d'erreur PDO sur exception
+    // ERROR PDO ON EXCEPTION
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     echo 'connexion avec la BDD établie <br>';
 
-    // save rating in db
+    // DATA FOR NEW RATING
     $rating_id = Uuid::uuid4()->toString();
-    $rating_name = trim($_POST['rating_name']);
-    $rating_rate = trim($_POST['rating_rate']);
-    $rating_message = trim($_POST['rating_message']);
-    echo $rating_rate;
-    // requête
+    $rating_name = htmlspecialchars($_POST['rating_name'], ENT_QUOTES, 'UTF-8');
+    $rating_rate = filter_var($_POST['rating_rate'], FILTER_VALIDATE_INT);
+    $rating_message = htmlspecialchars($_POST['rating_message'], ENT_QUOTES, 'UTF-8');
+
+    // QUERY
     $query = $pdo->prepare("INSERT INTO Ratings (rating_id, name, rate, message) VALUES (?, ?, ?, ?)");
     $query->execute([$rating_id, $rating_name, $rating_rate, $rating_message]);
 
-    if ($query->rowCount() > 0) {
-        echo "témoignage enregistré avec succès.";
-    } else {
-        echo "Erreur lors de l'enregistrement du témoignage.";
-    }
-
-    // redirection
     header("Location: index.php");
 
 } catch(PDOException $e) {

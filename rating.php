@@ -14,7 +14,7 @@
 <body>
 
     <!------- START HEADER ------->
-<header>
+<header class="z-1">
 <?php require_once "header.html" ?>
 </header>
     <!------- END HEADER ------->
@@ -23,31 +23,31 @@
 
     <!------- START MAIN ------->
 
-    <main class="d-flex justify-content-center m-5">
+    <main class="d-flex z-n1 justify-content-center m-5">
         <div class="card d-flex align-items-center p-3 colorForm">
             <h5 class="m-3">Mon témoigage</h5>
             <form class="w-100 " action="addRating.php" method="POST">
                 <div class="row">
                     <div class="col w-100">
-                        <input class="m-1" placeholder="nom" type="text" name="rating_name" id="rating_name" required>
+                        <input class="rounded m-1 ps-1" placeholder="nom" type="text" name="rating_name" id="rating_name" required>
                     </div>
                     <div class="row w-100">
                         <div class="rating m-1">
                             <!-- 1 -->
                             <input class="d-none" type="radio" name="rating_rate" id="star1" value="1">
-                            <label class="blueStar bi bi-star" for="star1"></label>
+                            <label class="blueStar star bi bi-star" for="star1"></label>
                             <!-- 2 -->
                             <input class="d-none" type="radio" name="rating_rate" id="star2" value="2">
-                            <label class="blueStar bi bi-star" for="star2"></label>
+                            <label class="blueStar star bi bi-star" for="star2"></label>
                             <!-- 3 -->
                             <input class="d-none" type="radio" name="rating_rate" id="star3" value="3">
-                            <label class="blueStar bi bi-star" for="star3"></label>
+                            <label class="blueStar star bi bi-star" for="star3"></label>
                             <!-- 4 -->
                             <input class="d-none" type="radio" name="rating_rate" id="star4" value="4">
-                            <label class="blueStar bi bi-star" for="star4"></label>
+                            <label class="blueStar star bi bi-star" for="star4"></label>
                             <!-- 5 -->
                             <input class="d-none" type="radio" name="rating_rate" id="star5" value="5">
-                            <label class="blueStar bi bi-star" for="star5"></label>
+                            <label class="blueStar star bi bi-star" for="star5"></label>
                         </div>
                     </div>
                 </div>
@@ -67,9 +67,11 @@
 
 
     <!------- START FOOTER ------->
-
+    <footer>
+    <?php require_once "footer.php" ?>
+    </footer>
     <!------- END FOOTER ------->
-    <script src="scriptRating.js"></script>
+    <script src="scriptParrot.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
 
