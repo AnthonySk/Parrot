@@ -1,2 +1,5 @@
 # Ignorer tous les fichiers systeme MacOS
 .DS_Store
+
+# Ignorer fichier de configuration des variables d'environnement
+.env
