@@ -1,0 +1,206 @@
+/******* START NEDIA QUERIES *******/
+
+@media (max-width: 576px) {
+    .imgCover, .showRating {
+        height: 40vh !important;
+    }
+}
+@media (min-width: 576px) {
+    h1 {
+        font-size: x-large !important;
+    }
+    header {
+        padding-top: 0px !important;
+    }
+    .logo {
+        height: 6rem !important;
+    }
+    .imgCover, .showRating {
+        height: 70vh !important;
+    }
+    .fs {
+        font-size: 0.8rem !important;
+    }
+    footer h6 {
+        font-size: 1.2rem !important;
+    }
+}
+
+@media (min-width: 768px) {
+    h1 {
+        font-size: xx-large !important;
+    }
+    .logo {
+        height: 7rem !important;
+    }
+    .imgCover, .showRating {
+        height: 100vh !important;
+    }
+    .fs {
+        font-size: 1rem !important;
+    }
+    footer h6 {
+        font-size: 1.3rem !important;
+    }
+}
+
+@media (min-width: 992px) {
+    .fs {
+        font-size: 1.2rem !important;
+    }
+    footer h6 {
+        font-size: 1.5rem !important;
+    }
+}
+
+/******* END MEDIA QUERIES *******/
+
+
+
+* {
+    font-family: montserrat !important;
+    margin: 0rem !important;
+    padding: 0rem !important;
+}
+
+.btn {
+    color:#fffffd;
+    background-color: #2b6da2;
+    border-radius: 8px 0px 8px 0px;
+    padding: 5px !important;
+}
+
+.btn:hover {
+    background-color: #2b6da2;
+    box-shadow: 0px 3px 10px 3px rgba(0,0,0,0.5);
+}
+
+
+
+/******* START HEADER *******/
+
+header {
+    background-color: #0c1006;
+    color: #fffffd;
+    position: sticky !important;
+    padding: 10px 0px 0px 0px;
+}
+
+header a {
+    color: #fffffd;
+    transition: transform 0.3s;
+}
+
+header ul a:hover {
+    transform: scale(1.2);
+}
+
+.navbar {
+    width: 25rem; 
+}
+
+h1 {
+    font-size: large;
+}
+
+.logo {
+    height: 5rem;
+}
+
+.dropdown-menu, .dropdown-item {
+    background-color: #2b6da2 !important;
+    border-radius: 8px 0px 8px 8px;
+    font-size: small;
+    color: #fffffd !important;
+}
+
+/******* END HEADER *******/
+
+
+
+/******* START MAIN *******/
+
+.imgCover { 
+    background-image: url(/img/coverMustang.jpeg);
+    background-size: cover;
+    background-position: bottom;
+}
+
+.handler {
+    min-width: 75vw !important;
+}
+
+.repairServiceAd, .usedCarAd, .card-img-top {
+    min-width: 20rem !important;
+    max-width: 28rem !important;
+    border-radius: 8px !important;
+}
+
+.card {
+    border-radius: 9px !important;
+}
+
+
+.badge {
+    font-size: medium;
+    background-color:#2b6da2;
+    border-radius: 8px 0px 8px 0px;
+}
+
+.handlerEmployeesArea, .repairServicesArea, .schedulesArea, .vehiclesArea, .ratingsArea {
+    background-color: #2b6da2;
+}
+
+.adminArea, .showRating, .colorForm, .employeeArea {
+    background-color: #dbb45d;
+}
+
+.bi {
+    color: #dbb45d;
+}
+
+.blueStar, .bi-x-circle {
+    color: #2b6da2;
+}
+
+footer .logo {
+    height: 4rem;
+}
+
+
+
+.logoSocialMedia {
+    height: 2rem;
+}
+
+.fs {
+    font-size: 1rem;
+}
+
+footer h6 {
+    font-size: 1rem;
+}
+
+footer {
+    background-color: #70a0c7;
+}
+
+
+.noUi-target {  /* slider bar */
+    background-color: #70a0c7; 
+}
+
+.noUi-connect { /* connect between cursors */
+    background-color:#dbb45d;
+}
+
+.noUi-handle { /* cursors */
+    background-color: #34568B;
+    box-shadow:none;
+    border-radius: 25%;
+    cursor: pointer;
+}
+
+.informations {
+    font-size: 0.7rem;
+}

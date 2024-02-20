@@ -1,0 +1,5 @@
+<svg class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" width="30" height="20" xmlns="http://www.w3.org/2000/svg">
+  <path d="M2.5 15 a.5.5 0 0 1 .5-.5 h20 a.5.5 0 0 1 0 1 h-20 a.5.5 0 0 1 -.5-.5" fill="none" stroke="#2b6da2" />
+  <path d="M7.2 10 a.5.5 0 0 1 .5-.5 h15 a.5.5 0 0 1 0 1 h-15 a.5.5 0 0 1 -.5-.5" fill="none" stroke="#dbb45d" />
+  <path d="M2.5 5 a.5.5 0 0 1 .5-.5 h20 a.5.5 0 0 1 0 1 h-20 a.5.5 0 0 1 -.5-.5" fill="none" stroke="#2b6da2" />
+</svg>
