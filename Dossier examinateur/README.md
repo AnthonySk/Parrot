@@ -1,8 +1,10 @@
 # Parrot
 ECF-Garage-Parrot
 
-# Parrot
-ECF-Garage-Parrot
+Accès admin:
+    - mail factice : correcteur_studi@gmail.com
+    - mdp : correcteur55$
+
 
 Instructions d'installation pour une utilisation en local
 
